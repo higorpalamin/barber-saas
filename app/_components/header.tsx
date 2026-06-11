@@ -10,8 +10,8 @@ function Header() {
         <Image
           alt="FSW Barber"
           src="/logo-fsw-barber.png"
-          height={10}
-          width={120}
+          height={15}
+          width={150}
         />
         <Button size="icon" variant="outline">
           <MenuIcon />
