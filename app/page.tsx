@@ -8,9 +8,15 @@ import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
+import Footer from "./_components/footer"
 
 async function Home() {
   const barbershops = await db.barbershop.findMany({})
+  const popularBarbershop = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
 
   return (
     <div>
@@ -21,12 +27,23 @@ async function Home() {
         <h2 className="text-xl font-semibold">Olá, Higor</h2>
         <p>Segunda-feira, 09 de Junho</p>
 
+        {/* buscar */}
         <div className="mt-4 flex items-center gap-2">
           <Input placeholder="Faça sua busca.." />
           <Button>
             <SearchIcon />
           </Button>
         </div>
+
+        {/* busca rápida */}
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant="secondary">
+            <Image alt="Cabelo" src="/cabelo.svg" width={16} height={16} />
+            Cabelo
+          </Button>
+        </div>
+
+        {/* banner */}
 
         <div className="relative mt-6 h-[150px] w-full">
           <Image
@@ -77,7 +94,20 @@ async function Home() {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        {/* populares */}
+        <h2 className="mt-6 mb-6 text-xs font-bold text-gray-400 uppercase">
+          Populares
+        </h2>
+
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarbershop.map((barbershop) => (
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
       </div>
+
+      <Footer />
     </div>
   )
 }
