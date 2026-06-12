@@ -3,12 +3,11 @@ import Header from "./_components/header"
 import { Button } from "./_components/ui/button"
 import { Input } from "./_components/ui/input"
 import Image from "next/image"
-import { Card, CardContent } from "./_components/ui/card"
-import { Badge } from "./_components/ui/badge"
-import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
 import Footer from "./_components/footer"
+import { quicksearchOptions } from "./_constants/search"
+import BookingItem from "./_components/booking-item"
 
 async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -37,10 +36,17 @@ async function Home() {
 
         {/* busca rápida */}
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-          <Button className="gap-2" variant="secondary">
-            <Image alt="Cabelo" src="/cabelo.svg" width={16} height={16} />
-            Cabelo
-          </Button>
+          {quicksearchOptions.map((option) => (
+            <Button className="gap-2" variant="secondary" key={option.title}>
+              <Image
+                alt={option.title}
+                src={option.imageUrl}
+                width={16}
+                height={16}
+              />
+              {option.title}
+            </Button>
+          ))}
         </div>
 
         {/* banner */}
@@ -55,32 +61,7 @@ async function Home() {
         </div>
 
         {/* agendamentos */}
-        <h2 className="mt-6 mb-6 text-xs font-bold text-gray-400 uppercase">
-          Agendamentos
-        </h2>
-
-        <Card className="mt-6 p-0">
-          <CardContent className="flex justify-between p-0">
-            {/* esquerda */}
-            <div className="flex flex-col gap-2 py-5 pl-5">
-              <Badge className="w-fit">Confirmado</Badge>
-              <h3 className="font-semibold">Corte de cabelo</h3>
-              <div className="flex items-center gap-2">
-                <Avatar className="h-6 w-6">
-                  <AvatarImage src="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png" />
-                </Avatar>
-                <p className="text-sm">Barbearia FSW</p>
-              </div>
-            </div>
-
-            {/* direita */}
-            <div className="flex flex-col items-center justify-center border-l-2 border-solid px-5">
-              <p className="text-sm">Agosto</p>
-              <p className="text-2xl">06</p>
-              <p className="text-sm">20:00</p>
-            </div>
-          </CardContent>
-        </Card>
+        <BookingItem />
 
         {/* recomendados */}
         <h2 className="mt-6 mb-6 text-xs font-bold text-gray-400 uppercase">
