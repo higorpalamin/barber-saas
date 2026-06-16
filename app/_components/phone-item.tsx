@@ -9,12 +9,32 @@ interface PhoneItemProp {
 }
 
 function PhoneItem({ phone }: PhoneItemProp) {
-  function handleCopyPhone(phone: string) {
-    navigator.clipboard.writeText(phone)
-    {
-      /* mensagem */
+  async function handleCopyPhone(phone: string) {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(phone)
+      } else {
+        const textarea = document.createElement("textarea")
+        textarea.value = phone
+        textarea.style.position = "fixed"
+        textarea.style.top = "0"
+        textarea.style.left = "0"
+        textarea.style.opacity = "0"
+        document.body.appendChild(textarea)
+        textarea.focus()
+        textarea.select()
+        const successful = document.execCommand("copy")
+        document.body.removeChild(textarea)
+
+        if (!successful) {
+          throw new Error("Falha ao copiar o telefone")
+        }
+      }
+      toast.success("Telefone copiado com sucesso!")
+    } catch (err) {
+      console.error("Failed to copy text: ", err)
+      toast.error("Não foi possível copiar o telefone")
     }
-    toast.success("Telefone copiado com sucesso!")
   }
 
   return (
