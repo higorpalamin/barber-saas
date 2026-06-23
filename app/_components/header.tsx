@@ -8,8 +8,8 @@ import SidebarSheet from "./sidebarSheet"
 
 function Header() {
   return (
-    <Card>
-      <CardContent className="flex flex-row items-center justify-between p-4">
+    <Card className="fixed top-0 right-0 left-0 z-10">
+      <CardContent className="flex flex-row items-center justify-between p-2">
         <Image
           alt="FSW Barber"
           src="/logo-fsw-barber.png"
@@ -19,7 +19,7 @@ function Header() {
 
         <Sheet>
           <SheetTrigger>
-            <Button size="icon" variant="outline">
+            <Button size="icon" variant="outline" className="cursor-pointer">
               <MenuIcon />
             </Button>
           </SheetTrigger>

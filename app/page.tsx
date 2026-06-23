@@ -21,14 +21,14 @@ async function Home() {
       {/* HEADER */}
       <Header />
 
-      <div className="p-4">
+      <div className="mt-20 p-4">
         <h2 className="text-xl font-semibold">Olá, Higor</h2>
         <p>Segunda-feira, 09 de Junho</p>
 
         {/* buscar */}
         <div className="mt-4 flex items-center gap-2">
           <Input placeholder="Faça sua busca.." />
-          <Button>
+          <Button className="cursor-pointer">
             <SearchIcon />
           </Button>
         </div>

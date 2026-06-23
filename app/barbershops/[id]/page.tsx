@@ -50,7 +50,7 @@ async function BarbershopPage({ params }: BarbershopPageProps) {
         <Button
           size="icon-lg"
           variant="secondary"
-          className="absolute top-4 left-4"
+          className="absolute top-4 left-4 cursor-pointer"
         >
           <Link href="/">
             <ChevronLeftIcon />
@@ -62,7 +62,7 @@ async function BarbershopPage({ params }: BarbershopPageProps) {
             <Button
               size="icon"
               variant="outline"
-              className="absolute top-4 right-4"
+              className="absolute top-4 right-4 cursor-pointer"
             >
               <MenuIcon />
             </Button>

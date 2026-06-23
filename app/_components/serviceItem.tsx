@@ -19,7 +19,7 @@ function ServiceItem({ service }: serviceItemProp) {
             alt={service.name}
           />
         </div>
-        <div className="space-y-2">
+        <div className="w-full space-y-2">
           <h3 className="text-sm font-semibold">{service.name}</h3>
           <p className="text-sm text-gray-400">{service.description}</p>
           {/* preço e botão */}
@@ -32,7 +32,9 @@ function ServiceItem({ service }: serviceItemProp) {
               }).format(Number(service.price))}
             </p>
 
-            <Button variant="secondary">Reservar</Button>
+            <Button variant="secondary" className="cursor-pointer">
+              Reservar
+            </Button>
           </div>
         </div>
       </CardContent>
