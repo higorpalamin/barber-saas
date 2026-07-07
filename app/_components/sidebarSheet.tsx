@@ -101,22 +101,25 @@ function SidebarSheet() {
       </div>
 
       {/* serviços */}
+      <h2 className="my-1 px-5 text-xs font-bold text-gray-400 uppercase">
+        Pesquise por serviços
+      </h2>
 
-      <div className="flex flex-col gap-2 border-b border-solid p-5">
+      <div className="flex flex-col gap-2 border-b border-solid px-5">
         {quicksearchOptions.map((option) => (
-          <Button
-            key={option.title}
-            className="justify-start gap-2"
-            variant="ghost"
-          >
-            <Image
-              src={option.imageUrl}
-              height={18}
-              width={18}
-              alt={option.title}
-            />
-            {option.title}
-          </Button>
+          <SheetClose key={option.title}>
+            <Link href={`/barbershops?service=${option.title}`}>
+              <Button className="w-full justify-start gap-2" variant="ghost">
+                <Image
+                  src={option.imageUrl}
+                  height={18}
+                  width={18}
+                  alt={option.title}
+                />
+                {option.title}
+              </Button>
+            </Link>
+          </SheetClose>
         ))}
       </div>
 
