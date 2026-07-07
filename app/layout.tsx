@@ -30,14 +30,14 @@ export default function RootLayout({
       lang="pt-br"
       className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="min-h-screen">
         <AuthProvider>
-          {" "}
-          {/* SessionProvider Google */}
-          {children}
-          <Toaster />
-          <Footer />
+          <div className="flex min-h-screen flex-col">
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </div>
         </AuthProvider>
+        <Toaster />
       </body>
     </html>
   )
